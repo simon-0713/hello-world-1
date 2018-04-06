@@ -1,0 +1,88 @@
+
+GIT
+===================
+
+- GIT cheat sheat
+    https://services.github.com/on-demand/downloads/de/github-git-cheat-sheet/
+
+- install git on mac
+    brew install git
+
+- check git version
+    git --version
+
+- check if user name is set...
+    git config user.name
+    git config user.email
+    git config --list
+
+- set user.name
+    git config --global user.name "Simon"
+    git config --global user.email "xyz@test.com"
+
+- configure editor
+    git config --global core.editor vim
+
+- add an existing project to github
+    https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
+    create new repository on github, init git, add all files, remove unwanted/staged files, commit, sync, and push
+    
+- init git
+    cd mydirectory
+    git init .
+
+- show status
+    git status
+
+- add all files
+    git add .
+
+- remove staged file
+   git rm --cached README.txt
+
+- commit
+    git commit -m"First commit"
+
+- to sync with your github repository... in terminal, add the URL for the remote repository where your local repository will be pushed
+    git remote add origin remote your repository URL
+    # Sets the new remote
+    git remote -v
+    # Verifies the new remote URL
+
+- push the local commit to remote github repository
+    $ git push -u origin master
+
+- example
+    git remote add origin https://github.com/somnidev/spring5webapp.git
+    git push -u origin master
+
+- amending a Commit Without Changing Its Message
+    If you don’t want to change your commit message, you can run the amend command with the no-edit flag, like this
+      git commit --amend --no-edit
+    see https://medium.com/@igor_marques/git-basics-adding-more-changes-to-your-last-commit-1629344cb9a8
+
+- pushing an Amended Commit
+    If you haven’t pushed the last commit yet to your remote, a single push is enough. 
+      git push origin master
+    Otherwise, you’ll have to push using the -f option since you’ve rewritten your commit history
+      git push -f origin master
+    Be warned: pushing with -f is a very dangerous thing.
+
+- how to stash your changes away (to stash - verstecken,bunkern
+      git stash save --keep-index
+    Include --include-untracked if you'd want to be thorough about it.
+    After that, you can drop that stash with a git stash drop command if you don't like them.
+
+- Re-applying your stashed changes
+      git stash pop
+    Popping your stash removes the changes from your stash and reapplies them to your working copy.
+    Alternatively, you can reapply the changes to your working copy and keep them in your stash with...
+      git stash apply
+
+- Stashing untracked or ignored files
+    Adding the -u option (or --include-untracked) tells git stash to also stash your untracked files.
+      git stash -u
+    You can include changes to ignored files as well by passing the -a option (or --all) when running git stash
+ 
+ 
+
