@@ -1,0 +1,161 @@
+Docker
+=============================================
+
+                        ##         .
+                  ## ## ##        ==
+               ## ## ## ## ##    ===
+           /"""""""""""""""""\___/ ===
+      ~~~ {~~ ~~~~ ~~~ ~~~~ ~~~ ~ /  ===- ~~~
+           \______ o           __/
+             \    \         __/
+              \____\_______/
+
+
+- Hello-World
+  
+  $ docker run hello-world
+
+- Im Hintergrund mit '-d' ausführen
+  
+  $ docker run -d hello-world 
+
+- Name vergeben
+  
+  $ docker run --name mycontainer -d hello-world
+
+- Alle laufende Container auflisten
+  
+  $ docker ps
+
+- Container stoppen
+
+  $ docker stop mycontainer
+
+- Alle Images auflisten
+  
+  $ docker ps -a  
+
+- Port mappen von intern auf extern???
+
+  $ docker run -p 27017:27017 -d mongo  
+
+- Laufende Docker-Container auflisten
+
+  $ docker ps 
+  CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                      NAMES
+  42f3f33e415e        mongo               "docker-entrypoint.s…"   8 hours ago         Up 8 hours          0.0.0.0:27017->27017/tcp   suspicious_shtern
+
+
+- Log eines gestarteten Docker-Containers anzeigen, ähnlich tail -f
+  
+  $ docker logs -f 42f3f33e415e
+
+- Container auflisten, ein Container ist eine Instanz eines Images
+  
+  $ docker container ls
+
+- Images auflisten
+  
+  $ docker image ls
+
+- Daten 'extern' speichern, mappen von '/data/db' auf lokales Verzeichnis mit '-v'
+
+  docker run --name some-mongo -p 27017:27017 -v /Users/me/dev/data/docker/mongo:/data/db -d mongo 
+
+- How do you shell in a running container?
+
+  $ docker exec -it mymongodb bash
+
+  whereby mymongodb is the container name
+
+
+Mongodb testen
+=======================================
+
+- Springboot_Projekt auschecken, mongodb starten und app starten, gehe zu localhost:8080
+  
+  $ git clone https://github.com/springframeworkguru/spring-boot-mongodb.git spring-boot-mongodb
+  $ cd spring-boot-mongodb/
+  $ docker run -p  27017:27017 -d mongo
+  $ maven spring-boot:run
+
+Anwendungen
+=======================================
+
+- MongoDB
+
+  $ docker run -p  27017:27017 -d mongo
+
+- RabbitMQ starten
+
+  $ docker run -d --hostname my-rabbit --name some-rabbit -p 8080:15672 -p -p 5671:5671 -p 5672:5672 -p rabbitmq:3-management
+
+- MySQL
+  
+  $ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:5.7
+  $ docker run --name some-mysql -v /Users/me/dev/data/docker/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=mysecretpw -p 3306:3306 -d mysql:5.7
+  $ docker run --name some-mysql -v /Users/me/dev/data/docker/mysql:/var/lib/mysql -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -p 3306:3306 -d mysql:5.7
+
+Housekeeping
+======================================
+
+- Kill all running containers... -q : quiet
+
+  $ docker kill $(docker ps -q)
+
+- Remove all containers... -a : ???
+
+  $ docker rm   $(docker ps -a -q)
+
+- Remove a specific docker Image
+
+  $ docker rmi <image name>
+
+- Delete untagged (tangling) image... -f : filter
+
+  $ docker rmi $(docker images -q -f dangling=true)
+
+- Delete all images
+
+  $ docker rmi $(docker images -q)
+
+- Volumes
+
+Docker image bauen
+========================================
+
+- Docker image mit Dockerfile und jar im aktuellen Verzeichnis bauen
+  
+  $ docker build -t spring-boot-web .
+
+
+
+
+Stuff
+=======================================
+439  docker run -d -p 80:80 --name webserver nginx
+  440  docker ps
+  441  docker ps -a
+  442  docker container ls
+  443  docker stop webserver
+  444  docker container ls
+  445  docker image ls
+  446  docker container ls -a
+  447  docker rm webserver
+  448  docker container ls -a
+  449  docker rm festive_sinoussi
+  450  docker container ls -a
+  451  docker rm 
+  452  docker rm 
+  453  docker rm friendly_liskov
+  454  docker container ls -a
+  455  docker image ls
+  456  docker run hello-world
+  457  docker container ls
+  458  docker container ls -a
+  459  docker run -d -p 80:80 --name webserver nginx
+  460  docker container ls
+  461  docker stop webserver
+
+
+

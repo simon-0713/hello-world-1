@@ -1,0 +1,116 @@
+
+Spring Boot
+--------------------
+
+- run spring-boot project
+    mvn spring:boot
+  or
+    mvn clean package
+    java -jar target/gs-rest-service-0.1.0.jar
+- server port
+    add to file 
+      resources/application.properties
+    the
+      server.port=8081
+    property whereby 0 uses a random port
+
+Rest Controller
+---------------------
+- Simple Controller
+  @RestController
+  public class HelloController {
+    @RequestMapping("/hello")
+    public String sayHello() {
+        return "Hello world!";
+    }
+  }
+ 
+
+Docker
+-----------------------
+
+1. Docker Toolbox installieren
+-----------------------
+- siehe Docker seite
+
+2. Docker testen
+-----------------------
+- Mit Docker ubuntu starten und hello world ausgeben: docker run ubuntu /bin/echo 'Hello world'
+
+                        ##         .
+                  ## ## ##        ==
+               ## ## ## ## ##    ===
+           /"""""""""""""""""\___/ ===
+      ~~~ {~~ ~~~~ ~~~ ~~~~ ~~~ ~ /  ===- ~~~
+           \______ o           __/
+             \    \         __/
+              \____\_______/
+
+
+docker is configured to use the default machine with IP 192.168.99.100
+For help getting started, check out the docs at https://docs.docker.com
+
+Simons-MBP:dev me$ docker run ubuntu /bin/echo 'Hello world'
+ntent-Type: application/json" -d '{"title":"First Entry","comment":"This is the first comment","commenter":"abc@gmail.com"}' http://localhost:8080/guestbook/
+ * curl -X PUT -H "Content-Type: application/json" -d '{"title":"Second Entry","comment":"This is the second comment","commenter":"abc@gmail.com"}' http://localhost:8080/guestbook/
+ * curl -X PUT -H "Content-Type: application/json" -d '{"title":"Third Entry","comment":"This is the third comment","commenter":"abc@gmail.com"}' http://localhost:8080/guestbook/
+
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+50aff78429b1: Pull complete 
+f6d82e297bce: Pull complete 
+275abb2c8a6f: Pull complete 
+9f15a39356d6: Pull complete 
+fc0342a94c89: Pull complete 
+Digest: sha256:ec0e4e8bf2c1178e025099eed57c566959bb408c6b478c284c1683bc4298b683
+Status: Downloaded newer image for ubuntu:latest
+Hello world
+Simons-MBP:dev me$
+
+3. Welche Images gibt es lokal?
+-------------------------------
+Simons-MBP:dev me$ docker images
+
+4. Welche Docker Container laufen gerade
+----------------------------------------
+Also z.B. wie folgt
+Simons-MBP:dev me$ docker run -d -t ubuntu
+968124bee7a208b2bb6f959c53316d1e715f291bdea60f167ee10e3bf231163e
+Simons-MBP:dev me$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+968124bee7a2        ubuntu              "/bin/bash"         4 seconds ago       Up 4 seconds                            sad_wescoff
+
+5. Docker Container stoppen
+-----------------------------------------
+Simons-MBP:dev me$ docker stop sad_wescoff
+
+6. Container-Name vergeben
+-----------------------------------------
+Simons-MBP:dev me$ docker run -d -t --name container1 ubuntu
+59bf5f09b47ab53d28b58f31d565643f25f4285fbd129e04ac347758ecc330fe
+Simons-MBP:dev me$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+59bf5f09b47a        ubuntu              "/bin/bash"         6 seconds ago       Up 5 seconds                            container1
+
+7. Image bauen
+-----------------------------------------
+mvn package docker:build
+
+8. Seite aufrufen:
+-----------------------------------------
+Beachte:
+docker is configured to use the default machine with IP 192.168.99.100
+
+Also http://192.168.99.100:8081/index.html
+aufrufen!
+
+curl -X PUT -H "Content-Type: application/json" -d '{"title":"First Entry","comment":"This is the first comment","commenter":"abc@gmail.com"}' http://localhost:8080/guestbook/
+curl -X PUT -H "Content-Type: application/json" -d '{"title":"Second Entry","comment":"This is the second comment","commenter":"abc@gmail.com"}' http://localhost:8080/guestbook/
+curl -X PUT -H "Content-Type: application/json" -d '{"title":"Third Entry","comment":"This is the third comment","commenter":"abc@gmail.com"}' http://localhost:8080/guestbook/
+
+
+
+
+
+
+
