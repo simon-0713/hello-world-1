@@ -1,0 +1,47 @@
+JavaScript for absolute beginners - Tutorial in one hour
+
+- Install node from ...
+- Install visual studio code
+- Install 'Live Server'
+- Node is a program that includes googles v8 javascript engine.
+
+JavaScript
+- Declare variable using 'let' instead of 'var' which is the old way
+    let name = 'Mosh';
+- Declare a constant
+    const interestRate = 0.3;
+- Primitives like... String, Number, Boolean, Undefined, Null, and in ES6 Symbol
+    let name = 'Mosh';
+    let age = 30;
+    let isApproved = false;
+    let firstName = undefined;
+    let selectedColor = null;    
+- Difference between JavaScript and other languages
+    Dynamic language - dynamically typed - vs Static language - statically typed
+    Type of the variable can change at runtime vs cannot change in the future
+- Reference Types
+    Object, Array, Function
+- Object literal consists of key/value pairs
+    let person = {
+
+    }     
+- Arrays
+    simple array
+        let selectedColors = ['red', 'blue'];
+        selectedColors[2] = 'green';
+    the object of the array and the elements of an array are dynamic
+        let myArray = ['Hello', '2', 'princess'];
+- Functions
+    // Performing a task...
+    function greet(name, lastName) {
+        console.log('Hello ' + name + ' ' + lastName);
+    }
+    // Calculating a value...
+    function square(number) {
+        return number * number;
+    }
+    greet('John', 'Smith');
+    let number = square(4);
+
+Visual Studio Code Tipps
+- Anzeigen -> Integriertes Terminal
