@@ -128,6 +128,71 @@ Docker image bauen
   
   $ docker build -t spring-boot-web .
 
+Simple Dockerfile
+========================================
+
+FROM openjdk
+VOLUME /tmp
+ADD maven/liliput-0.0.1-SNAPSHOT.jar myapp.jar
+RUN sh -c 'touch /myapp.jar'
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/myapp.jar"]
+
+
+Fabric8 maven docker plugin
+========================================
+
+- Stackoverflow
+  https://stackoverflow.com/questions/39126226/fabric8-springboot-full-example
+
+- How to build a docker image
+
+  $ mvn clean package docker:build
+
+- How to run a docker image using maven?
+
+  $ mvn docker:run
+
+- How to start a docker image in the background?
+
+  $ mvn docker:start
+
+- How to stop a docker container using maven?
+
+  $ mvn docker:stop
+
+CI/CD
+=================================================
+
+- How to run integration tests
+  
+  $ mvn clean package docker:build verify docker:push
+
+  build a docker image, runs the integration test, and pushes the image to docker hub if everything is okay
+  the docker build may not be necessary if your integration test depends on your 'build <goal>'! 
+
+Debugging the application in a Docker container
+==================================================
+
+- Debugging pass a java agent settings in JAVA_OPTS variable and map agent’s port to localhost during a container run
+  
+  $ docker run -e "JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,address=5005,server=y,suspend=n" -p 8080:8080 -p 5005:5005 -t springio/gs-spring-boot-docker
+  
+  See https://spring.io/guides/gs/spring-boot-docker/
+
+
+FAQ
+==================================================
+
+- How is Docker different from a normal virtual machine?
+    https://stackoverflow.com/questions/16047306/how-is-docker-different-from-a-normal-virtual-machine?rq=1
+
+- How to run your own registry - like hub.docker.com
+    https://docs.docker.com/registry/deploying/
+    https://blog.ambar.cloud/how-to-set-up-your-own-self-hosted-docker-repo/
+
+- How to obtain the IP address of your container?
+  
+  $ docker-machine ip
 
 
 

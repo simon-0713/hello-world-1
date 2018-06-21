@@ -2,6 +2,8 @@
 GIT
 ===================
 
+SETUP
+=======================================
 - GIT cheat sheat
     https://services.github.com/on-demand/downloads/de/github-git-cheat-sheet/
 
@@ -34,6 +36,47 @@ GIT
 - show status
     git status
 
+Github
+==========================================
+
+Quick setup — if you’ve done this kind of thing before
+https://github.com/somnidev/js-bootcamp.git
+We recommend every repository include a README, LICENSE, and .gitignore.
+
+…or create a new repository on the command line
+echo "# js-bootcamp" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/somnidev/js-bootcamp.git
+git push -u origin master
+
+…or push an existing repository from the command line
+git remote add origin https://github.com/somnidev/js-bootcamp.git
+git push -u origin master
+
+…or import code from another repository
+You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
+
+
+CHECKING OUT 
+==========================================
+
+- clone your remote repository
+    $ git clone https://github.com/springframeworkguru/spring-boot-docker.git  spring-boot-docker-fabric8
+
+- look up branches
+    $ git branch -a
+    * master
+      remotes/origin/HEAD -> origin/master
+      remotes/origin/fabric8-add
+
+- check out your branch
+    $ git checkout fabric8-add
+
+
+BASIC STUFF LIKE ADD/REMOVE/COMMIT/PUSH
+==========================================
 - add all files
     git add .
 
@@ -68,6 +111,21 @@ GIT
       git push -f origin master
     Be warned: pushing with -f is a very dangerous thing.
 
+Git Log Commands
+=============================================
+
+- get minimum information in one line
+    $ git log --oneline
+
+- show log including files changed
+    $ git log --stat
+
+- show log including diff of files changed
+    $ git log -p
+
+
+STASHING THINGS
+=============================================
 - how to stash your changes away (to stash - verstecken,bunkern
       git stash save --keep-index
     Include --include-untracked if you'd want to be thorough about it.
